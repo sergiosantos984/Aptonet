@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptonet — The Ultimate One-Stop Shop for Global IT Talent & Solutions</title>
+    <style>
+        :root {
+            --bg-color: #fcfbfb;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #1d1d1f;
+            --text-secondary: #6e6e73;
+            
+            /* Apple-Inspired Premium Deep Red & Crimson Palette */
+            --accent-crimson: #a31d24;
+            --accent-burgundy: #6b1217;
+            --accent-rose-dark: #cd2e37;
+            --accent-charcoal: #2c2c2e;
+            --accent-gold-dim: #b89156;
+            
+            --gradient-primary: linear-gradient(135deg, #a31d24 0%, #4a0a0d 100%);
+            --gradient-subtle: linear-gradient(180deg, rgba(252,251,251,1) 0%, rgba(244,240,240,1) 100%);
+            
+            --glass-border: rgba(163, 29, 36, 0.08);
+            --shadow-premium: 0 12px 40px rgba(74, 10, 13, 0.04);
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Dynamic Reveal Animations Setup */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Frosted Glass Navigation bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 54px;
+            background: rgba(252, 251, 251, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(163, 29, 36, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1140px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 19px;
+            letter-spacing: -0.5px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-crimson);
+        }
+
+        /* Hero / Headline Block */
+        header {
+            min-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 24px 60px 24px;
+            background: radial-gradient(circle at 50% 30%, rgba(247, 230, 231, 0.5) 0%, var(--bg-color) 75%);
+        }
+
+        .badge-one-stop {
+            background: linear-gradient(135deg, rgba(163,29,36,0.08) 0%, rgba(74,10,13,0.08) 100%);
+            color: var(--accent-crimson);
+            padding: 6px 16px;
+            border-radius: 980px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(163,29,36,0.15);
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 800;
+            letter-spacing: -2.5px;
+            line-height: 1.05;
+            max-width: 900px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #1d1d1f 20%, #443839 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 22px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent-crimson);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 17px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(163,29,36,0.2);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(163,29,36,0.35);
+            background: var(--accent-burgundy);
+        }
+
+        /* One-Stop Shop Value Grid Matrix */
+        .value-pillar-section {
+            background: #ffffff;
+            padding: 90px 24px;
+            border-radius: 32px;
+            margin: 40px auto;
+            max-width: 1140px;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            h1 { font-size: 46px; }
+        }
+        @media (max-width: 576px) {
+            .pillars-grid { grid-template-columns: 1fr; }
+        }
+
+        .pillar-card {
+            background: #ffffff;
+            padding: 30px 24px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(163, 29, 36, 0.05);
+            border-top: 4px solid var(--accent-crimson);
+            box-shadow: var(--shadow-premium);
+        }
+
+        .pillar-card:nth-child(2) { border-top-color: var(--accent-burgundy); }
+        .pillar-card:nth-child(3) { border-top-color: var(--accent-rose-dark); }
+        .pillar-card:nth-child(4) { border-top-color: var(--accent-charcoal); }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(163,29,36,0.08);
+        }
+
+        .pillar-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pillar-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Capability Practice Verticals Layout */
+        section {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .verticals-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .verticals-container { grid-template-columns: 1fr; }
+        }
+
+        .vertical-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(163, 29, 36, 0.03);
+        }
+
+        .vertical-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 100%;
+            background: var(--accent-crimson);
+        }
+        .vertical-card:nth-child(2)::before { background: var(--accent-burgundy); }
+        .vertical-card:nth-child(3)::before { background: var(--accent-rose-dark); }
+        .vertical-card:nth-child(4)::before { background: var(--accent-charcoal); }
+        .vertical-card:nth-child(5)::before { background: var(--accent-gold-dim); }
+        .vertical-card:nth-child(6)::before { background: var(--gradient-primary); }
+
+        .vertical-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .index-badge {
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(163, 29, 36, 0.06);
+            padding: 3px 10px;
+            border-radius: 10px;
+            color: var(--accent-crimson);
+        }
+
+        .role-list {
+            list-style: none;
+        }
+
+        .role-list li {
+            font-size: 15px;
+            color: #424245;
+            margin-bottom: 12px;
+            padding-left: 22px;
+            position: relative;
+        }
+
+        .role-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-crimson);
+            font-weight: 700;
+        }
+
+        /* Capacity Shadows Dashboard */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fdfbfb 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-premium);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .stat-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(163, 29, 36, 0.3);
+        }
+
+        .stat-card h3 {
+            font-size: 54px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Smooth Continuous Dynamic Location Loop */
+        .locations-wrapper {
+            overflow: hidden;
+            padding: 24px 0;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: var(--shadow-premium);
+            position: relative;
+            border: 1px solid rgba(163, 29, 36, 0.03);
+        }
+
+        .locations-track {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            animation: scrollLocations 50s linear infinite;
+        }
+
+        .location-badge {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            background: #fdfafb;
+            padding: 12px 24px;
+            border-radius: 980px;
+            border: 1px solid rgba(163,29,36,0.05);
+            transition: all 0.3s;
+        }
+
+        .location-badge:hover {
+            background: var(--accent-crimson);
+            color: white;
+            border-color: var(--accent-crimson);
+        }
+
+        @keyframes scrollLocations {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Unified Vendor Ecosystem Blocks */
+        .client-block {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 45px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-premium);
+            border: 1px solid rgba(163, 29, 36, 0.03);
+        }
+
+        .client-block h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .client-grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 14px;
+        }
+
+        .client-item {
+            background: #fdfafb;
+            padding: 14px 10px;
+            border-radius: 14px;
+            font-size: 13px;
+            text-align: center;
+            font-weight: 600;
+            color: #515154;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(163, 29, 36, 0.03);
+        }
+
+        .client-item:hover {
+            background: #ffffff;
+            border-color: var(--accent-crimson);
+            color: var(--accent-crimson);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(163,29,36,0.08);
+        }
+
+        /* Process Flow Alignment */
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .process-flow { grid-template-columns: 1fr; }
+        }
+
+        .process-step {
+            background: #ffffff;
+            border: 1px solid var(--glass-border);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .process-step h4 {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--accent-burgundy);
+        }
+
+        .process-step p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Executive Grid Profiles */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .team-member {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(163, 29, 36, 0.02);
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(163,29,36,0.08);
+        }
+
+        .team-avatar {
+            width: 76px;
+            height: 76px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 8px 20px rgba(163,29,36,0.15);
+        }
+
+        .team-member h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .team-member p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Custom Full-spectrum Footer */
+        footer {
+            background: #ffffff;
+            border-top: 1px solid rgba(163,29,36,0.1);
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 22px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 12px auto;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Glass Nav Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">APTONET</a>
+            <div class="nav-links">
+                <a href="#one-stop">One-Stop Shop</a>
+                <a href="#practices">Practice Verticals</a>
+                <a href="#metrics">Ecosystem Scale</a>
+                <a href="#partners">Ecosystem Partners</a>
+                <a href="#team">Leadership</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Elevated Dynamic Hero Unit -->
+    <header>
+        <div class="badge-one-stop">Aptonet Powered by Matrix</div>
+        <h1>The Ultimate <span>One-Stop Shop</span> For IT Talent & Technology Solutions.</h1>
+        <p class="hero-desc">Consolidate your entire engineering lifecycle. From strategic staff augmentation and offshore technical centers to complex aerospace mission systems, we deploy unified modern talent answers instantly.</p>
+        <a href="#one-stop" class="cta-btn">Explore Total Capabilities</a>
+    </header>
+
+    <!-- One-Stop Shop Value Multiplier Matrix -->
+    <section id="one-stop" class="reveal">
+        <h2 class="section-title">The Power of Consolidation</h2>
+        <p class="section-subtitle">Stop managing disparate staffing vendors, software consultancies, and compliance brokers. Aptonet integrates cross-functional IT talent operations under a single, high-performing global wrapper.</p>
+        
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <h3>Flexible Sourcing</h3>
+                <p>Seamlessly shift between Staff Augmentation, SOW Managed Capacity, Retained Executive Placement, and agile Payrolling models.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>Global Delivery</h3>
+                <p>Leverage immediate access to top-tier technical professionals through integrated Nearshore operations and highly scalable Offshore engines.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>Recruitment Rigor</h3>
+                <p>Built upon a strict 2:1 localized submission pipeline ratio, ensuring precise talent curation with high retention benchmarks.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>Diverse Capture</h3>
+                <p>Enforce specialized Diversity Spend Capture initiatives natively tied into corporate onboarding and rigorous compliance frameworks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Matrix Scale Metrics Board -->
+    <section id="metrics" class="reveal">
+        <h2 class="section-title">Global Corporate Capacity</h2>
+        <p class="section-subtitle">As a trusted partner backed by the immense infrastructure of Matrix, we bring unparalleled stability and localized execution depth to your projects.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>$2.5B</h3>
+                <p>2023 Revenue Footprint</p>
+            </div>
+            <div class="stat-card">
+                <h3>18%</h3>
+                <p>Year-Over-Year Growth</p>
+            </div>
+            <div class="stat-card">
+                <h3>16,000+</h3>
+                <p>Global System Employees</p>
+            </div>
+            <div class="stat-card">
+                <h3>74</h3>
+                <p>Strategic Global Offices</p>
+            </div>
+            <div class="stat-card">
+                <h3>65+</h3>
+                <p>Active Operating Countries</p>
+            </div>
+            <div class="stat-card">
+                <h3>20+ Yrs</h3>
+                <p>IT Recruitment Experience</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Continuous Scrolling Geographic Location Slider -->
+    <section id="locations" class="reveal">
+        <h2 class="section-title">Global Delivery Footprint</h2>
+        <p class="section-subtitle">We deploy compliant technical assets natively across major trading zones and operational theaters worldwide.</p>
+        <div class="locations-wrapper">
+            <div class="locations-track" id="locations-track">
+                <!-- Programmatically generated list hooks inside -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialized Core Tech Vertical Capability Blocks -->
+    <section id="practices" class="reveal">
+        <h2 class="section-title">Full-Spectrum Core Verticals</h2>
+        <p class="section-subtitle">Our deep execution expertise spans critical technical horizons, giving your enterprise access to highly targeted execution capabilities.</p>
+        
+        <div class="verticals-container">
+            <!-- 1 -->
+            <div class="vertical-card">
+                <h4><span class="index-badge">01</span> Program Governance & Controls</h4>
+                <ul class="role-list">
+                    <li>Program Managers (PM) & Transition Leads</li>
+                    <li>PMO Analysts & Risk Mitigation Managers</li>
+                    <li>Contract Administrators & Finance EVM Specialists</li>
+                    <li>Audit, Quality Assurance & Corporate Governance Specialists</li>
+                </ul>
+            </div>
+            <!-- 2 -->
+            <div class="vertical-card">
+                <h4><span class="index-badge">02</span> Enterprise Core Systems IT</h4>
+                <ul class="role-list">
+                    <li>Enterprise Architects & Modern Solution Engineers</li>
+                    <li>Active Directory & Identity Access Management (IAM)</li>
+                    <li>Microsoft 365 Deployment & Platform Engineers</li>
+                    <li>Tier 1 / Tier 2 / Tier 3 Global Service Desk Support</li>
+                </ul>
+            </div>
+            <!-- 3 -->
+            <div class="vertical-card">
+                <h4><span class="index-badge">03</span> Infrastructure & Networks</h4>
+                <ul class="role-list">
+                    <li>Cloud Infrastructure Engineers (AWS, Azure, GovCloud)</li>
+                    <li>Network Architects & LAN/WAN Design Engineers</li>
+                    <li>Unified Communications & Enterprise VoIP Architects</li>
+                    <li>Satellite Communications (SATCOM) & Tactical Infrastructure</li>
+                </ul>
+            </div>
+            <!-- 4 -->
+            <div class="vertical-card">
+                <h4><span class="index-badge">04</span> Cybersecurity & Assurance</h4>
+                <ul class="role-list">
+                    <li>Cybersecurity Architects & Zero Trust Structural Engineers</li>
+                    <li>SOC Monitoring Analysts (Tiers 1–3 Security Experts)</li>
+                    <li>RMF Compliance Specialists, ISSO, & ISSE Officers</li>
+                    <li>Advanced Embedded Cyber Threat Intelligence Analysts</li>
+                </ul>
+            </div>
+            <!-- 5 -->
+            <div class="vertical-card">
+                <h4><span class="index-badge">05</span> Defense C5ISR & Mission Integration</h4>
+                <ul class="role-list">
+                    <li>C5ISR Systems Architects & Tactical Integration Engineers</li>
+                    <li>Mission Support Engineers & Sensor Systems Specialists</li>
+                    <li>Secure Operations & Tactical Interoperability Engineers</li>
+                    <li>Forward-Deployed Expeditionary Support Engineers</li>
+                </ul>
+            </div>
+            <!-- 6 -->
+            <div class="vertical-card">
+                <h4><span class="index-badge">06</span> Data Science & Analytics Transformation</h4>
+                <ul class="role-list">
+                    <li>Big Data Analytics, Data Warehousing & Data Engineers</li>
+                    <li>AI / Machine Learning (ML) & Process Automation Architects</li>
+                    <li>Business Intelligence (BI) Analytics Reporting Leads</li>
+                    <li>API, Enterprise Middleware & Digital Transformation Experts</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Talent Delivery Models & Retention Benchmarks -->
+    <section class="reveal">
+        <h2 class="section-title">Total Talent Services</h2>
+        <p class="section-subtitle">Our strategic sourcing services adapt smoothly to market fluctuations in core parameters like time, cost, risk profile, agility, control matrix, and technical depth.</p>
+        <div class="process-flow">
+            <div class="process-step">
+                <h4>SOW Delivery</h4>
+                <p>Staff Augmentation, Managed SOW Capacity, Nearshore Frameworks, and Offshore Recruitment Engines.</p>
+            </div>
+            <div class="process-step">
+                <h4>Pipeline Architecture</h4>
+                <p>Local Specialized Sourcing, Custom Candidate Pipeline Pools, and Retained Executive Placement.</p>
+            </div>
+            <div class="process-step">
+                <h4>Talent Metrics</h4>
+                <p>32% Referral Sourced Placements, Approx. 70% Annual Talent Retention Rate, Optimized Time-to-Hire.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Integrated Partner Networks -->
+    <section id="partners" class="reveal">
+        <h2 class="section-title">The Enterprise Ecosystem Portfolio</h2>
+        <p class="section-subtitle">We seamlessly service premier Fortune 500 tech systems, critical defense ecosystems, and global multi-nationals.</p>
+        
+        <div class="client-block" style="border-top: 4px solid var(--accent-crimson);">
+            <h3>Commercial Enterprise Portfolios</h3>
+            <div class="client-grid-list" id="commercial-list"></div>
+        </div>
+
+        <div class="client-block" style="border-top: 4px solid var(--accent-burgundy);">
+            <h3>Aerospace & Defense Client Base</h3>
+            <div class="client-grid-list" id="defense-list"></div>
+        </div>
+
+        <div class="client-block" style="border-top: 4px solid var(--accent-charcoal);">
+            <h3>Matrix Ecosystem Corporate Subsidiaries</h3>
+            <div class="client-grid-list" id="subsidiary-list"></div>
+        </div>
+    </section>
+
+    <!-- Executive Leadership Board Section -->
+    <section id="team" class="reveal">
+        <h2 class="section-title">Corporate Leadership</h2>
+        <p class="section-subtitle">Backed by global operational leaders steering execution frameworks across geographic practices.</p>
+        <div class="team-grid" id="team-grid"></div>
+    </section>
+
+    <!-- Premium Footer Block Elements -->
+    <footer>
+        <div class="footer-logo">APTONET</div>
+        <p>Aptonet is a trusted partner for elite IT recruitment, specializing in connecting modern enterprise ecosystems with top-tier technology professionals across global technical domains.</p>
+        <p style="color:#a1a1a6; font-size:11px; margin-top: 20px;">&copy; 2026 Aptonet. All rights reserved. Content referenced verbatim from file "Aptonet Verticals.pdf". Confidential and Proprietary Systems Data.</p>
+    </footer>
+
+    <script>
+        // Data Extraction Set Arrays
+        const globalLocations = [
+            "United States", "Canada", "Europe", "Netherlands", "Germany", "Poland", "Croatia", 
+            "Portugal", "Israel", "India", "China", "South Korea", "Taiwan", "Hong Kong", 
+            "Malaysia", "Singapore", "Japan", "Philippines", "Australia", "New Zealand", 
+            "Mexico", "Costa Rica", "Columbia", "Brazil", "Argentina", "South Africa"
+        ];
+
+        const commercialPartners = [
+            "Amazon.com", "BP Energy", "Bayer Corp", "Citigroup", "Corona Extra", "CVS Health", 
+            "Delta Air Lines", "Direct Insurance", "Ericsson", "Fiverr", "Charles Schwab", 
+            "Grubhub", "DreamWorks", "General Mills", "IKEA", "Krispy Kreme", "Seeking Alpha", 
+            "Sony Systems", "Thomson Reuters", "Mars Global", "Michelin Group", "Nike", 
+            "Nova Solutions", "Nuvei Pay", "Philips Health", "Salesforce", "Samsung Systems", "Unilever"
+        ];
+
+        const defenseClients = [
+            "NATO Allied Command", "Boeing Aerospace", "Abaco Systems", "SCI Systems", 
+            "Sierra Corp", "Syrte Systems", "Ametek Def", "Rhode & Schwarz", "BDR Aerospace"
+        ];
+
+        const matrixSubsidiaries = [
+            "AppBuilder", "Comblack Talent", "Commit Data", "Datamind BI", "Dario IT", 
+            "MobiSoft", "Pilat Sourcing", "Magix Info", "OnTarget Comm", "PowWow Mobile", 
+            "Quickode Software", "Skysoft Solutions", "Twingo Big Data"
+        ];
+
+        const corporateTeamMembers = [
+            { name: "Yuki Tsaroya", title: "CEO", dept: "MAGIC Americas" },
+            { name: "Jonathan Kaplan", title: "COO", dept: "Americas Operations" },
+            { name: "Patricio Mendes", title: "Director of Operations", dept: "Global Logistics" },
+            { name: "Stephanie Schroeder", title: "VP of US Sales", dept: "Commercial Enterprise" },
+            { name: "Tera Hockaday", title: "Director", dept: "US East Recruiting Practice" },
+            { name: "Amy Fields", title: "Director", dept: "US West Recruiting Practice" },
+            { name: "Sergio Santos", title: "Business Manager", dept: "Operations Control" },
+            { name: "Nora Farrell", title: "Managed Capacity Lead", dept: "SOW Compliance" },
+            { name: "Pj Petracek", title: "Immigration Manager", dept: "Global Mobility Hub" },
+            { name: "Beth Ann Howell", title: "Human Resources Specialist", dept: "Talent Management" }
+        ];
+
+        // Core Assembly Lifecycle Engine
+        function assembleEngineComponents() {
+            // Infinite Scroll Marquee Setup
+            const track = document.getElementById('locations-track');
+            const loopList = [...globalLocations, ...globalLocations];
+            loopList.forEach(loc => {
+                const badge = document.createElement('div');
+                badge.className = 'location-badge';
+                badge.innerText = loc.toUpperCase();
+                track.appendChild(badge);
+            });
+
+            // Populate Enterprise Entities Lists
+            populateItemGrid('commercial-list', commercialPartners);
+            populateItemGrid('defense-list', defenseClients);
+            populateItemGrid('subsidiary-list', matrixSubsidiaries);
+
+            // Populate Leadership Grid System
+            const teamGrid = document.getElementById('team-grid');
+            corporateTeamMembers.forEach(mem => {
+                const element = document.createElement('div');
+                element.className = 'team-member reveal';
+                const initials = mem.name.split(' ').map(n => n[0]).join('');
+                
+                element.innerHTML = `
+                    <div class="team-avatar">${initials}</div>
+                    <h4>${mem.name}</h4>
+                    <p style="font-weight:700; color:var(--accent-crimson); margin-bottom:4px;">${mem.title}</p>
+                    <p style="font-size:12px;">${mem.dept}</p>
+                `;
+                teamGrid.appendChild(element);
+            });
+        }
+
+        function populateItemGrid(targetId, sourceArray) {
+            const wrapper = document.getElementById(targetId);
+            sourceArray.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'client-item';
+                el.innerText = item;
+                wrapper.appendChild(el);
+            });
+        }
+
+        // Intersectional Scroll Triggers Engine Hook
+        function registerScrollAnimations() {
+            const runOptions = { threshold: 0.05, rootMargin: "0px 0px -40px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, runOptions);
+
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }, 400);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            assembleEngineComponents();
+            registerScrollAnimations();
+        });
+    </script>
+</body>
+</html>
